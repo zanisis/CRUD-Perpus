@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%= title %>
+  </br>
+</br>
+    <form method="post" value="/users/edit/<%=user.id%>">
+      <table border=1>
+        <tr>
+          <td>Name</td>
+          <td><input type="text" name="name" value="<%=user.name%>"></td>
+        </tr>
+
+        <tr>
+          <td>Email</td>
+          <td><input type="text" name="email" value="<%=user.email%>"></td>
+        </tr>
+
+        <tr>
+          <td>Photo</td>
+          <td><input type="text" name="photo" value="<%=user.photo%>"></td>
+        </tr>
+
+      </table>
+      </br>
+      <input type="submit" value="submit">
+    </form>
+  </body>
+</html>

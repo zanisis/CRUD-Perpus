@@ -5,7 +5,32 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    BOOK'S LIST
+  </br>
+</br>
+
+    <select name="userId">
+      <% users.forEach((user)=>{ %>
+        <option value="<%=user.id%>"><%=user.name%></option>
+      <% }) %>
+    <select>
+    <table border=1>
+      <tr>
+        <td>Book's ID</td>
+        <td>Book's Title</td>
+        <td>Stock</td>
+        <td>Action</td>
+      </tr>
+      <% books.forEach((book)=>{ %>
+        <tr>
+          <td><%=book.id%></td>
+          <td><%=book.title%></td>
+          <td><%=book.stock%></td>
+          <td><a href="/buy/<%= book.id%>/<%= book.stock%>"><input type="button" value="Buy"></a> | <a href="/edit/<%= book.id%>"><input type="button" value="Edit"></a> | <a href="/delete/<%= book.id%>"><input type="button" value="Delete"></a></td>
+        </tr>
+      <% }) %>
+    </table>
+    </br>
+    <a href="/addbook"><input type="button" value="ADD BOOK"></a>
   </body>
 </html>
