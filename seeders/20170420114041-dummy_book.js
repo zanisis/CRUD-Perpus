@@ -16,19 +16,19 @@ module.exports = {
     return queryInterface.bulkInsert('Books', [{
       title: 'Travel',
       desc: 'Kkoekfoakefoaewvnoeauiv fainoienc wcnawncuewi aenfuoc',
-      photo: 'AAA',
+      photo: 'http://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(37).jpg',
       stock: 5
     },
     {
       title: 'China Town',
       desc: 'Lorem Ipsum Dolor SIt Amet',
-      photo: 'BBB',
+      photo: 'http://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(21).jpg',
       stock: 8
     },
     {
       title: 'Indonesia Merdeka',
       desc: 'Indonesia merdeka di tahun 1975',
-      photo: 'CCC',
+      photo: 'http://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(12).jpg',
       stock: 10
     }], {});
   },

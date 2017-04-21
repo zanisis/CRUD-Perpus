@@ -13,8 +13,8 @@
 
                         <!--Card image-->
                         <div class="view overlay hm-white-slight">
-                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20(37).jpg" class="img-fluid" alt="">
-                            <a href="#">
+                            <img src="<%=book.photo%>" class="img-fluid" alt="">
+                            <a href="/descbook/<%=book.id%>">
                                 <div class="mask"></div>
                             </a>
                         </div>
@@ -26,11 +26,12 @@
                             <h4 class="card-title"><%=book.title%></h4>
                             <!--Text-->
                             <p class="card-text"><%=book.desc%></p>
-                            <a class="btn btn-info">Buy</a>
-                            <a class="btn-floating btn green"><%=book.stock%></a>
-                            <a class="btn btn-indigo">Edit</a>
-                            <a class="btn-floating btn orange">Del</a>
+                            <a data-target=".buy<%=book.id%>" data-toggle="modal" class="btn btn-info">buy</a>
+                            <a href="" class="btn-floating btn green"><%=book.stock%></a>
+                            <a data-target=".<%=book.id%>" data-toggle="modal" class="btn btn-indigo waves-effect waves-light">Edit</a>
+                            <a href="/delete/<%= book.id%>" class="btn-floating btn orange">Del</a>
                         </div>
+
                         <!--/.Card content-->
 
                     </div>
@@ -48,6 +49,7 @@
                 <%if(i != books.length){%>
 
                 <%}%>
+
 
             <%# </div>%>
             <!--/.Second row-->

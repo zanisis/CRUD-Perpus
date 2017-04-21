@@ -56,7 +56,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav1" aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <strong>StoreOABook</strong>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNav1">
@@ -64,31 +64,21 @@
                         <li class="nav-item" hidden>
                             <a class="nav-link">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item" hidden>
-                            <a class="nav-link">Features</a>
+                        <li class="nav-item">
+                            <a href="/users" class="nav-link">List User</a>
                         </li>
                         <li class="nav-item" hidden>
                             <a class="nav-link">Pricing</a>
                         </li>
-                        <li class="nav-item dropdown btn-group waves">
-                          <select class="dropdown-toggle show-menu-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
+                        <li class="nav-item dropdown btn-group waves" hidden="">
+                          <select name="userId" class="dropdown-toggle show-menu-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <%users.forEach((user)=>{%>
+                            <option value="<%=user.id%>" ><%=user.name%></option>
+                            <% }) %>
                           </select>
-
-                            <%# <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                                <option value=""></option>
-                                <a class="dropdown-item">Action</a>
-                                <a class="dropdown-item">Another action</a>
-                                <a class="dropdown-item">Something else here</a>
-                            </div>%>
                         </li>
                     </ul>
-                    <form class="form-inline waves-effect waves-light">
-                        <input class="form-control" type="text" placeholder="Search">
-                    </form>
+
                 </div>
             </div>
         </nav>
@@ -137,7 +127,7 @@
                 </div>
                 <!--Footer-->
                 <div class="modal-footer flex-column">
-                    <button type="submit" class="btn btn-primary ml-auto">Save</button>
+                  <button type="submit" class="btn btn-primary ml-auto">Save</button>
                 </div>
               </form>
             </div>
@@ -145,6 +135,107 @@
         </div>
     </div>
     <!--/modal Stucture add-->
+
+    <!--modal Stucture buy-->
+    <%books.forEach((book)=>{%>
+    <div class="modal buy<%=book.id%>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Form User</h4>
+                </div>
+                <!--Body-->
+                <form class="" action="/buy" method="post">
+                <div class="modal-body">
+
+                    <div class="md-form">
+
+                        <i class="fa fa-user prefix"></i>
+                        <input type="" name="book" value="<%=book.id%>" id="" class="" hidden>
+                        <input type="" name="stock" value="<%=book.stock%>" id="" class="" hidden>
+                        <li class="nav-item dropdown btn-group waves" style="margin-left: 50px;margin-top: -7px;">
+                          <select name="userId" class="form-control dropdown-toggle show-menu-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            <%users.forEach((user)=>{%>
+                            <option value="<%=user.id%>" ><%=user.name%></option>
+                            <% }) %>
+                          </select>
+                        </li>
+                    </div>
+
+                </div>
+                <!--Footer-->
+                <div class="modal-footer flex-column">
+                  <button type="submit" class="btn btn-primary ml-auto">buy</button>
+                </div>
+              </form>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <%})%>
+    <!--/modal Stucture buy-->
+
+    <!--modal Stucture edit-->
+
+    <%books.forEach((book)=>{%>
+
+    <div class="modal <%=book.id%>" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-sm">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Form User</h4>
+                </div>
+                <!--Body-->
+                <form class="" action="/edit/<%=book.id%>" method="post">
+                <div class="modal-body">
+
+                    <div class="md-form">
+                        <i class="fa fa-book prefix"></i>
+                        <input type="text" name="title" value="<%=book.title%>" id="form4" class="form-control">
+                        <label for="form4"></label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-calculator prefix"></i>
+                        <input type="text" name="stock" value="<%=book.stock%>" id="form2" class="form-control">
+                        <label for="form2"></label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-camera-retro prefix"></i>
+                        <input type="text" name="photo" value="<%=book.photo%>" id="form3" class="form-control">
+                        <label for="form3"></label>
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-tasks prefix"></i>
+                        <textarea class="md-textarea" id="form2" name="desc"><%=book.desc%></textarea>
+                        <label for="form2"></label>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer flex-column">
+                    <button type="submit" class="btn btn-primary ml-auto">Save</button>
+                </div>
+              </form>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <%})%>
+    <!--/modal Stucture edit-->
+
     <main>
 
         <!--Main layout-->

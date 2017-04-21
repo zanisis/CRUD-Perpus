@@ -14,6 +14,9 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER
       },
+      isDelete: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         defaultValue:new Date(),

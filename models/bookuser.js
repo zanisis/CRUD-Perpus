@@ -2,7 +2,8 @@
 module.exports = function(sequelize, DataTypes) {
   var BookUser = sequelize.define('BookUser', {
     BookId: DataTypes.INTEGER,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    isDelete: DataTypes.BOOLEAN
   }, {
     classMethods: {
       associate: function(models) {

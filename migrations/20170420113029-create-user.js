@@ -14,6 +14,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      photo: {
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         defaultValue:new Date(),
