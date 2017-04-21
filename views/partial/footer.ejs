@@ -99,9 +99,18 @@
 
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="/stylesheets/js/mdb.min.js"></script>
+<!--Materilze-->
+<script type="text/javascript" src="/stylesheets/Material/js/materialize.js"></script>
+<script type="text/javascript" src="/stylesheets/Material/js/materialize.min.js"></script>
 
-<script>
+<%# <script>
 new WOW().init();
+</script>%>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.modal-trigger').leanModal();
+});
 </script>
 
 </body>

@@ -1,0 +1,37 @@
+<% include ./add_partial/header %>
+
+    <hr class="extra-margins">
+    <!--for table-->
+    <div>
+        <table class="striped centered" style="max-width: 900px; margin-left: 100px;">
+            <thead>
+                <tr>
+                    <th data-field="id">Name</th>
+                    <th data-field="name">Email</th>
+                    <th data-field="price">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+              <%users.forEach((user)=>{%>
+                <tr>
+                    <td><%=user.name%></td>
+                    <td><%=user.email%></td>
+                    <td>
+                      <a href="/users/view/<%=user.id%>" class="btn-floating waves-effect waves-light  indigo lighten-2"><i class="material-icons">assignment</i></a>
+                      <a data-target=".m<%=user.id%>" data-toggle="modal" class="btn-floating waves-effect waves-light purple lighten-2"><i class="material-icons">mode_edit</i></a>
+                      <a href="/users/delete/<%=user.id%>" class="btn-floating waves-effect waves-light red lighten-1"><i class="material-icons">clear</i></a>
+                    </td>
+                </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+    <!--/for table-->
+
+    </div>
+    <!--/.Main layout-->
+
+    </main>
+
+    <% include ./partial/footer %>

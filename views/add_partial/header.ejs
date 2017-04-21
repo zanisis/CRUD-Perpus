@@ -11,8 +11,10 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
-    <!-- Bootstrap core CSS -->
-    <%# <link href="/bootstrap.css" rel="stylesheet">%>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Material core CSS -->
+    <link href="/stylesheets/Material/css/materialize.css" rel="stylesheet">
+    <link href="/stylesheets/Material/css/materialize.min.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap.min.css" rel="stylesheet">
 
@@ -32,21 +34,20 @@
             margin-top: 1rem;
             margin-bottom: 2.5rem;
         }
-         .navbar {
+
+        .navbar {
             background-color: #3b3b3f;
         }
 
         footer.page-footer {
             background-color: #3b3b3f;
             margin-top: 2rem;
-
         }
     </style>
 
 </head>
 
 <body>
-
 
     <header>
 
@@ -70,31 +71,17 @@
                         <li class="nav-item" hidden>
                             <a class="nav-link">Pricing</a>
                         </li>
-                        <li class="nav-item dropdown btn-group waves">
-                          <select class="dropdown-toggle show-menu-arrow" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                          </select>
-
-                            <%# <a class="nav-link dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                            <div class="dropdown-menu dropdown" aria-labelledby="dropdownMenu1">
-                                <option value=""></option>
-                                <a class="dropdown-item">Action</a>
-                                <a class="dropdown-item">Another action</a>
-                                <a class="dropdown-item">Something else here</a>
-                            </div>%>
-                        </li>
                     </ul>
-                    <form class="form-inline waves-effect waves-light">
+                    <form class="form-inline waves-effect waves-light right">
                         <input class="form-control" type="text" placeholder="Search">
                     </form>
                 </div>
             </div>
         </nav>
-	    <!--/.Navbar-->
+        <!--/.Navbar-->
 
     </header>
+
     <!--modal Stucture add-->
     <div class="modal bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -108,32 +95,21 @@
                     <h4 class="modal-title" id="myModalLabel">Form User</h4>
                 </div>
                 <!--Body-->
-                <form class="" action="/addbook" method="post">
+                <form class="" action="/users/adduser" method="post">
                 <div class="modal-body">
 
                     <div class="md-form">
-                        <i class="fa fa-book prefix"></i>
-                        <input type="text" name="title" value="" id="form4" class="form-control">
-                        <label for="form4">Name of Book</label>
+                        <i class="fa fa-user prefix"></i>
+                        <input type="text" name="name" value="" id="form4" class="form-control">
+                        <label for="form4">Your Name</label>
                     </div>
 
                     <div class="md-form">
-                        <i class="fa fa-calculator prefix"></i>
-                        <input type="text" name="stock" value="" id="form2" class="form-control">
-                        <label for="form2">Stock Input</label>
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" name="email" value="" id="form2" class="form-control">
+                        <label for="form2">Your Email</label>
                     </div>
 
-                    <div class="md-form">
-                        <i class="fa fa-camera-retro prefix"></i>
-                        <input type="text" name="photo" value="" id="form3" class="form-control">
-                        <label for="form3">link url your img</label>
-                    </div>
-
-                    <div class="md-form">
-                        <i class="fa fa-tasks prefix"></i>
-                        <textarea class="md-textarea" id="form2" name="desc"></textarea>
-                        <label for="form2">Description</label>
-                    </div>
                 </div>
                 <!--Footer-->
                 <div class="modal-footer flex-column">
@@ -145,6 +121,51 @@
         </div>
     </div>
     <!--/modal Stucture add-->
+    <!--modal Stucture edit-->
+    <%users.forEach((user)=>{%>
+
+    <div class="modal m<%=user.id%>" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-sm">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Form User</h4>
+                </div>
+                <!--Body-->
+                <form class="" action="/users/edit/<%=user.id%>" method="post">
+                <div class="modal-body">
+
+                    <div class="md-form">
+                        <i class="fa fa-user prefix"></i>
+                        <input type="text" name="name" value="<%=user.name%>" id="form4" class="form-control">
+                    </div>
+
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix"></i>
+                        <input type="text" name="email" value="<%=user.email%>" id="form2" class="form-control">
+                    </div>
+
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer flex-column">
+                    <button type="submit" class="btn btn-primary ml-auto">Save</button>
+                </div>
+              </form>
+            </div>
+            <!--/.Content-->
+
+        </div>
+    </div>
+    <%})%>
+
+    <!--/modal Stucture edit-->
+
     <main>
 
         <!--Main layout-->
@@ -163,10 +184,10 @@
 
                 <!--Main information-->
                 <div class="col-lg-5">
-                    <h2 class="h2-responsive">We are professionals</h2>
+                    <h2 class="h2-responsive">List of Users</h2>
                     <hr>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis pariatur quod ipsum atque quam dolorem voluptate officia sunt placeat consectetur alias fugit cum praesentium ratione sint mollitia, perferendis natus quaerat!</p>
-                    <a data-target=".bd-example-modal-sm" data-toggle="modal" class="btn btn-info">Add Book now!</a>
+                    <p>Place you can add list of user</p>
+                    <a data-target=".bd-example-modal-sm" data-toggle="modal" class="modal-trigger btn-floating btn-large waves-effect waves-light teal lighten-1"><i class="material-icons">add</i></a>
                 </div>
             </div>
             <!--/.First row-->

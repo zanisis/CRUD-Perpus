@@ -1,4 +1,4 @@
-<% include ./desc_partial/header %>
+<% include ./user_partial/header %>
 
     <hr class="extra-margins">
 
@@ -102,31 +102,21 @@
     <!--/.Second row-->
     <!--for table-->
     <div>
-        <table class="striped centered" style="max-width: 900px; margin-left: 100px;">
+        <table class="striped centered" style="max-width: 900px; margin-left: 100px; margin-bottom: 157px;">
             <thead>
                 <tr>
-                    <th data-field="id">Name</th>
                     <th data-field="name">Item Name</th>
-                    <th data-field="price">Item Price</th>
+                    <th data-field="price">Item Left Stock</th>
                 </tr>
             </thead>
 
             <tbody>
+              <%users.Books.forEach((book)=>{%>
                 <tr>
-                    <td>Alvin</td>
-                    <td>Eclair</td>
-                    <td>$0.87</td>
+                    <td><%= book.title%></td>
+                    <td><%= book.stock%></td>
                 </tr>
-                <tr>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td>$3.76</td>
-                </tr>
-                <tr>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>
-                    <td>$7.00</td>
-                </tr>
+                <%})%>
             </tbody>
         </table>
     </div>
