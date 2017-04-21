@@ -22,8 +22,8 @@ router.get('/', function(req, res, next) {
 //User view
 router.get('/view/:id',function (req,res,next) {
   db.User.findById(req.params.id, {include : { model : db.Book}})
-    .then((users)=>{
-      console.log(users);
+    .then((user)=>{
+      // console.log(users);
       res.render('user', {users:users });
     })
   // res.render('user', {user : _user})
