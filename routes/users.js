@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 router.get('/detailuser/:id/', function(req, res, next) {
   db.User.findById(req.params.id)
       .then((user)=>{
-        db.BookUser.findAll({where : { UserId:req.params.id }, include: { model:db.Book }})
+        db.BookUser.findAll({where : { UserId:req.params.id, isDelete:false }, include: { model:db.Book }})
           .then((bookusers)=>{
              res.render('mvp_user', { title:'USER REVIEW',user:user, bookusers: bookusers })
           })
@@ -52,6 +52,7 @@ router.get('/edit/:id', function(req, res, next) {
     })
 });
 
+
 //EDIT USER POST
 router.post('/edit/:id', function(req, res, next) {
   let UserUpdate = {
@@ -69,7 +70,10 @@ router.post('/edit/:id', function(req, res, next) {
 router.get('/delete/:id', function(req, res, next) {
   db.User.destroy({ where : {id : req.params.id}})
   .then(()=>{
-    res.redirect('/users')
+    db.BookUser.update({isDelete:true}, { where : { UserId:req.params.id}})
+    .then(()=>{
+      res.redirect('/users')
+    })
   })
 });
 

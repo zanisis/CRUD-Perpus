@@ -14,23 +14,28 @@ module.exports = {
     */
     return queryInterface.bulkInsert('BookUsers', [{
       BookId:1,
-      UserId:2
+      UserId:2,
+      isDelete:false
     },
     {
       BookId:1,
-      UserId:3
+      UserId:3,
+      isDelete:false
     },
     {
       BookId:2,
-      UserId:3
+      UserId:3,
+      isDelete:false
     },
     {
       BookId:3,
-      UserId:1
+      UserId:1,
+      isDelete:false
     },
     {
       BookId:3,
-      UserId:2
+      UserId:2,
+      isDelete:false
     }], {});
   },
 

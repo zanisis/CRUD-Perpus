@@ -14,15 +14,18 @@ module.exports = {
     */
     return queryInterface.bulkInsert('Users', [{
       name: 'Oscar',
-      email:'franky1790@gmail.com'
+      email:'franky1790@gmail.com',
+      photo: 'http://wallpapersdota2.com/wp-content/uploads/2014/08/dota2-wallpapers.seoplus.com_.ua-2.jpg'
     },
     {
       name: 'Zanny',
-      email:'zanny@gmail.com'
+      email:'zanny@gmail.com',
+      photo: 'http://wallpapersdota2.com/wp-content/uploads/2014/08/dota2-wallpapers.seoplus.com_.ua-2.jpg'
     },
     {
       name: 'Billy',
-      email:'billy@yahoo.com'
+      email:'billy@yahoo.com',
+      photo:'http://wallpapersdota2.com/wp-content/uploads/2014/08/dota2-wallpapers.seoplus.com_.ua-2.jpg'
     }], {});
   },
 

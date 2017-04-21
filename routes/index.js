@@ -39,7 +39,7 @@ router.post('/addbook', function(req, res, next) {
 router.get('/detailbook/:id/', function(req, res, next) {
   db.Book.findById(req.params.id)
       .then((book)=>{
-        db.BookUser.findAll({where : { BookId:req.params.id }, include: { model:db.User }})
+        db.BookUser.findAll({where : { BookId:req.params.id, isDelete:false }, include: { model:db.User }})
           .then((bookusers)=>{
              res.render('mvp_book', { title:'BOOK REVIEW',book:book, bookusers: bookusers })
           })
@@ -50,18 +50,21 @@ router.get('/detailbook/:id/', function(req, res, next) {
 router.get('/delete/:id', function(req, res, next) {
   db.Book.destroy({ where : {id : req.params.id}})
   .then(()=>{
-    res.redirect('/')
+    db.BookUser.update({isDelete:true}, { where : { BookId:req.params.id}})
+    .then(()=>{
+      res.redirect('/')
+    })
   })
 });
 
 
 //BUY BOOK
 router.get('/buy/:id/:stock', function(req, res, next) {
-  console.log('----',req.params.idUser);
+  // console.log('----',req.params.hdnVl);
   let stockUpdate = req.params.stock - 1
   db.Book.update({stock:stockUpdate}, {where : {id : req.params.id}} )
   .then(()=>{
-    res.redirect('/')
+      res.redirect('/')
   })
 });
 
