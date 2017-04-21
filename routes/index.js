@@ -5,12 +5,16 @@ var db = require('../models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  // res.render('user', { title: 'Express' });
+  // res.render('index');
+  // res.render('index');
+  // res.render('desc');
+  // res.render('user');
+
   db.Book.findAll()
-    .then((books)=>{
+    .then((_books)=>{
       db.User.findAll()
-      .then((users)=>{
-        res.render('index', { title : 'BOOK LIST', books:books, users:users });
+      .then((_users)=>{
+        res.render('index', { title : 'BOOK LIST', books:_books, users:_users });
       })
     })
 });
@@ -75,6 +79,12 @@ router.post('/edit/:id', function(req, res, next) {
   })
 });
 
-
+router.get('/descbook/:id',function(req,res,next){
+  db.Book.findById(req.params.id,{include : {model : db.User}})
+  .then((_book)=>{
+    console.log(_book);
+    res.render('desc', {book: _book });
+  })
+})
 
 module.exports = router;

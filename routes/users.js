@@ -10,14 +10,24 @@ router.get('/', function(req, res, next) {
     db.User.findAll({include : { model : db.Book}, order : 'id asc'})
       .then((users)=>{
         // console.log(users[0].Books[0]);
-        res.render('listuser', { title : 'USER LIST', users:users });
+        res.render('add_user', { title : 'USER LIST', users:users });
       })
 });
 
 //ADD USER FORM
-router.get('/adduser', function(req, res, next) {
-    res.render('form_add_user', { title : 'ADD USER' })
-});
+// router.get('/adduser', function(req, res, next) {
+//     res.render('form_add_user', { title : 'ADD USER' })
+// });
+
+//User view
+router.get('/view/:id',function (req,res,next) {
+  db.User.findById(req.params.id, {include : { model : db.Book}})
+    .then((user)=>{
+      // console.log(users);
+      res.render('user', {users:users });
+    })
+  // res.render('user', {user : _user})
+})
 
 //ADD USER POST
 router.post('/adduser', function(req, res, next) {
@@ -33,12 +43,12 @@ router.post('/adduser', function(req, res, next) {
 });
 
 //EDIT USER FORM
-router.get('/edit/:id', function(req, res, next) {
-  db.User.findOne({where : {id : req.params.id}})
-    .then((user)=>{
-      res.render('form_edit_user', { title:'EDIT USER', user:user })
-    })
-});
+// router.get('/edit/:id', function(req, res, next) {
+//   db.User.findOne({where : {id : req.params.id}})
+//     .then((user)=>{
+//       res.render('form_edit_user', { title:'EDIT USER', user:user })
+//     })
+// });
 
 //EDIT USER POST
 router.post('/edit/:id', function(req, res, next) {
