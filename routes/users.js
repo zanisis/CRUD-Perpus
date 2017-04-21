@@ -14,6 +14,17 @@ router.get('/', function(req, res, next) {
       })
 });
 
+//MVP USER, BELUM SEMPURNA
+router.get('/detailuser/:id/', function(req, res, next) {
+  db.User.findById(req.params.id)
+      .then((user)=>{
+        db.BookUser.findAll({where : { UserId:req.params.id }, include: { model:db.Book }})
+          .then((bookusers)=>{
+             res.render('mvp_user', { title:'USER REVIEW',user:user, bookusers: bookusers })
+          })
+      })
+});
+
 //ADD USER FORM
 router.get('/adduser', function(req, res, next) {
     res.render('form_add_user', { title : 'ADD USER' })
@@ -21,10 +32,11 @@ router.get('/adduser', function(req, res, next) {
 
 //ADD USER POST
 router.post('/adduser', function(req, res, next) {
+  console.log(req.body.photo);
   let user = {
     name:req.body.name,
-    email:req.body.email
-    // photo:req.body.photo
+    email:req.body.email,
+    photo:req.body.photo
   }
   db.User.create(user)
   .then(()=>{
@@ -44,8 +56,8 @@ router.get('/edit/:id', function(req, res, next) {
 router.post('/edit/:id', function(req, res, next) {
   let UserUpdate = {
     name:req.body.name,
-    email:req.body.email
-    // photo:req.body.photo
+    email:req.body.email,
+    photo:req.body.photo
   }
   db.User.update(UserUpdate, {where : { id : req.params.id }})
   .then(()=>{

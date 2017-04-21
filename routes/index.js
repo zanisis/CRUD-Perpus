@@ -5,7 +5,7 @@ var db = require('../models')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  db.Book.findAll()
+  db.Book.findAll({ order : 'id asc'})
     .then((books)=>{
       db.User.findAll()
       .then((users)=>{
@@ -34,6 +34,18 @@ router.post('/addbook', function(req, res, next) {
   })
 });
 
+
+//MVP BOOK, BELUM SEMPURNA
+router.get('/detailbook/:id/', function(req, res, next) {
+  db.Book.findById(req.params.id)
+      .then((book)=>{
+        db.BookUser.findAll({where : { BookId:req.params.id }, include: { model:db.User }})
+          .then((bookusers)=>{
+             res.render('mvp_book', { title:'BOOK REVIEW',book:book, bookusers: bookusers })
+          })
+      })
+});
+
 //DELETE BOOK
 router.get('/delete/:id', function(req, res, next) {
   db.Book.destroy({ where : {id : req.params.id}})
@@ -45,6 +57,7 @@ router.get('/delete/:id', function(req, res, next) {
 
 //BUY BOOK
 router.get('/buy/:id/:stock', function(req, res, next) {
+  console.log('----',req.params.idUser);
   let stockUpdate = req.params.stock - 1
   db.Book.update({stock:stockUpdate}, {where : {id : req.params.id}} )
   .then(()=>{

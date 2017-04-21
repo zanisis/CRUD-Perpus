@@ -9,7 +9,7 @@
   </br>
 </br>
 
-    <select name="userId">
+    <select name="dataId">
       <% users.forEach((user)=>{ %>
         <option value="<%=user.id%>"><%=user.name%></option>
       <% }) %>
@@ -24,7 +24,7 @@
       <% books.forEach((book)=>{ %>
         <tr>
           <td><%=book.id%></td>
-          <td><%=book.title%></td>
+          <td><a href="/detailbook/<%=book.id%>"><%=book.title%></a></td>
           <td><%=book.stock%></td>
           <td><a href="/buy/<%= book.id%>/<%= book.stock%>"><input type="button" value="Buy"></a> | <a href="/edit/<%= book.id%>"><input type="button" value="Edit"></a> | <a href="/delete/<%= book.id%>"><input type="button" value="Delete"></a></td>
         </tr>
